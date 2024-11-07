@@ -1,0 +1,195 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Effects of resistance training volume on lean body mass
+
+
+## Introduction
+
+
+## Methods
+
+### Participants
+
+Participants are described in @tbl-participants
+
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-participants
+#| tbl-cap: "Participant characteristics"
+
+
+
+
+library(tidyverse); library(exscidata);
+library(gt)
+
+exscidata::dxadata %>%
+      filter(time == "pre", 
+             include == "incl") %>%
+      select(participant, sex, age, 
+             height, weight) %>%
+      pivot_longer(names_to = "variable", 
+                   values_to = "value", 
+                   cols = age:weight) %>%
+      summarise(.by = c(sex, variable), 
+                m = mean(value), 
+                s = sd(value), 
+                n = n()) %>% 
+      
+      mutate(sex = if_else(sex == "male", 
+                           "Male", "Female"), 
+             sex = paste0(sex, " n = ", n), 
+             stat = paste0(round(m, 1), 
+                           " (", 
+                           round(s, 1), 
+                           ")")) %>%
+      dplyr::select(sex, variable, stat) %>%
+      pivot_wider(names_from = variable, 
+                  values_from = stat) %>%
+      gt()  %>%
+      cols_label(sex = "", 
+                 age = "Age (years)", 
+                 weight = "Body mass (kg)", 
+                 height = "Stature (cm)")
+      
+ 
+
+
+```
+
+
+
+
+### Study design
+
+
+#### Measurement of regional lean body mass
+
+#### Measurement of maximal strength
+
+#### Training protocol
+
+### Statistics
+
+
+## Results
+
+
+
+### Higher Training volume results in greater regional hypertrophy
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+
+library(tidyverse); library(exscidata); library(lme4)
+
+# Load data
+dat <- dxadata %>%
+  select(participant:include, lean.left_leg, lean.right_leg) %>%
+        
+        # Extract leg specific data
+  pivot_longer(names_to = "leg", 
+               values_to = "lean.mass", 
+               cols = lean.left_leg:lean.right_leg) %>%
+  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
+         sets = if_else(multiple == leg, "multiple", "single")) %>%
+  select(participant, time, sex, include, sets, leg, lean.mass) %>%
+        # Filter only included participants
+        filter(include == "incl") %>%
+        # Make data set wider by time 
+        
+        pivot_wider(names_from = "time", 
+                    values_from = "lean.mass") %>%
+        # Calculate change score
+        
+        mutate(change = post - pre) %>%
+        
+        # Keep change score and make it wider by sets
+        select(participant:sets, change) %>%
+        pivot_wider(names_from = sets, values_from = change) 
+
+t_results <- with(dat, t.test(multiple, single, paired = TRUE))
+
+
+
+####### 
+
+## Write up the t-test
+
+pval <- round(t_results$p.value, 3)
+
+tval <- round(t_results$statistic,2)
+
+df <- t_results$parameter
+
+cil <- round(t_results$conf.int[1],1)
+ciu <- sprintf("%.1f", round(t_results$conf.int[2],1))
+
+estimate <- round(t_results$estimate,1)
+
+
+lean.mass.results <- paste0(estimate, 
+                            " (95% CI: [", 
+                            cil, 
+                            ", ", 
+                            ciu, 
+                            "], *P*-value = ", 
+                            pval, 
+                            ", t<sub>", 
+                            df, "</sub> = ", 
+                            tval, ")")
+
+```
+
+The mean difference in regional lean body mass change between sets conditions was `r lean.mass.results`.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-lean-body-mass
+#| fig-cap: "Lean body mass changes from pre- to post-intervention in male and female participants."
+
+library(ggtext)
+
+dat %>%
+      pivot_longer(names_to = "sets", 
+                   values_to = "lbm", 
+                   cols = multiple:single) %>%
+      
+      mutate(sets = factor(sets, 
+                           levels = c("single",
+                                      "multiple"))) %>%
+      
+      ggplot(aes(sets, lbm, 
+                 group = participant, 
+                 color = sex)) + 
+      geom_line() + 
+      geom_point() +
+      # Add new axis/legend labels
+      labs(x = "Sets", 
+           color = "Kj&oslash;nn") + 
+      # Change legend title to markdown formatting
+      theme(legend.title = element_markdown())
+
+
+
+```
+
+
+
+
+## Discussion
+

@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Mappeeksamen",
+    "section": "",
+    "text": "Preface",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "03-stat-inf.html",
+    "href": "03-stat-inf.html",
+    "title": "1  Statistical inference",
+    "section": "",
+    "text": "I’m adding text1\n\n\n\n\n1. Ugurlu, D. et al. Dose-response effects of 8-week resistance training on body composition and muscular performance in untrained young women: A quasi-experimental design. Medicine 103, e40322 (2024).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Statistical inference</span>"
+    ]
+  },
+  {
+    "objectID": "05-report.html",
+    "href": "05-report.html",
+    "title": "2  Effects of resistance training volume on lean body mass",
+    "section": "",
+    "text": "2.1 Introduction",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Effects of resistance training volume on lean body mass</span>"
+    ]
+  },
+  {
+    "objectID": "05-report.html#methods",
+    "href": "05-report.html#methods",
+    "title": "2  Effects of resistance training volume on lean body mass",
+    "section": "2.2 Methods",
+    "text": "2.2 Methods\n\n2.2.1 Participants\nParticipants are described in Table 2.1\n\n\n\n\nTable 2.1: Participant characteristics\n\n\n\n\n\n\n\n\n\n\nAge (years)\nStature (cm)\nBody mass (kg)\n\n\n\n\nFemale n = 18\n22 (1.3)\n167.7 (6.9)\n64.4 (10.4)\n\n\nMale n = 16\n23.6 (4.1)\n182.9 (5.9)\n75.8 (10.7)\n\n\n\n\n\n\n\n\n\n\n\n\n2.2.2 Study design\n\n2.2.2.1 Measurement of regional lean body mass\n\n\n2.2.2.2 Measurement of maximal strength\n\n\n2.2.2.3 Training protocol\n\n\n\n2.2.3 Statistics",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Effects of resistance training volume on lean body mass</span>"
+    ]
+  },
+  {
+    "objectID": "05-report.html#results",
+    "href": "05-report.html#results",
+    "title": "2  Effects of resistance training volume on lean body mass",
+    "section": "2.3 Results",
+    "text": "2.3 Results\n\n2.3.1 Higher Training volume results in greater regional hypertrophy\nThe mean difference in regional lean body mass change between sets conditions was 122.8 (95% CI: [8.6, 237.0], P-value = 0.036, t33 = 2.19).\n\n\n\n\n\n\n\n\nFigure 2.1: Lean body mass changes from pre- to post-intervention in male and female participants.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Effects of resistance training volume on lean body mass</span>"
+    ]
+  },
+  {
+    "objectID": "05-report.html#discussion",
+    "href": "05-report.html#discussion",
+    "title": "2  Effects of resistance training volume on lean body mass",
+    "section": "2.4 Discussion",
+    "text": "2.4 Discussion",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Effects of resistance training volume on lean body mass</span>"
+    ]
+  }
+]

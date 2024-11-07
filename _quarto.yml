@@ -1,0 +1,23 @@
+project:
+  render:
+    - "*.qmd"
+    - "!devel/"
+  type: book
+book:
+  title: "Mappeeksamen"
+  author: "Daniel H"
+  date: "2024-11-05"
+  chapters:
+    - index.qmd
+    - 03-stat-inf.qmd
+    - 05-report.qmd
+    - references.qmd
+bibliography: 
+      - resources/references.bib
+      - resources/ref2.bib
+csl: resources/citation-style.csl
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
